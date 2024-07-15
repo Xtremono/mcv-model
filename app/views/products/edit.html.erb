@@ -1,0 +1,9 @@
+<div class="container w-50 m-4">
+<h1>Edit current product</h1>
+<%= simple_form_for (@product) do |f| %>
+  <%= f.input :name %>
+  <%= f.input :price %>
+  <%= f.input :quantity %>
+  <%= f.submit "Update Product", class:"btn btn-primary"%>
+<% end %>
+</div>

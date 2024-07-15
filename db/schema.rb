@@ -10,9 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_15_161758) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_15_164050) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "lists", force: :cascade do |t|
+    t.string "name"
+    t.date "date"
+    t.float "total", default: 0.0
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "name"
+    t.float "price"
+    t.float "quantity"
+    t.bigint "list_id", null: false
+    t.bigint "unit_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["list_id"], name: "index_products_on_list_id"
+    t.index ["unit_id"], name: "index_products_on_unit_id"
+  end
+
+  create_table "units", force: :cascade do |t|
+    t.string "name"
+    t.string "unit"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -26,4 +54,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_15_161758) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "products", "lists"
+  add_foreign_key "products", "units"
 end

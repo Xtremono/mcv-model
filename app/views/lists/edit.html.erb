@@ -1,0 +1,9 @@
+<div class="container w-50 m-4">
+<h1>Edit current list</h1>
+<%= simple_form_for (@list) do |f| %>
+  <%= f.input :name %>
+  <%= f.input :date %>
+  <%= f.input :total %>
+  <%= f.submit "Update list", class:"btn btn-primary"%>
+<% end %>
+</div>

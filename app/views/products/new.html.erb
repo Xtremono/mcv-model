@@ -1,0 +1,13 @@
+<div class="container p-4 d-flex justify-content-center">
+  <div class="shadow-lg border border-light">
+    <div class="m-3">
+      <h1>Add a new product</h1>
+      <%= simple_form_for (@product) do |f| %>
+        <%= f.input :name %>
+        <%= f.input :price %>
+        <%= f.input :quantity %>
+        <%= f.submit "Add Product", class:"btn btn-primary"%>
+      <% end %>
+    </div>
+  </div>
+</div>
